@@ -2,8 +2,9 @@
 set(PROJECT_NAME rostemplate)
 
 ## this flag is used to set the compiler flags and should be used in the code
-## with #if DEBUG_MODE <code> #else <code> #endif OR the debug print macro
-add_definitions(-DDEBUG_MODE=1)
+## with #if DEBUG_MODE <code> #else <code> #endif OR the debug print macro (on by default)
+OPTION(DEBUG_MODE "Enables the DEBUG messages and -O0 flags" 1)
+
 # set the compiler
 set (CMAKE_CXX_COMPILER=g++)
 
@@ -15,11 +16,13 @@ add_compile_options(-std=c++11)
 
 # Compile differently if DEBUG_MODE is active
 if(DEBUG_MODE)
-    message("DEBUG is ON - no optimizations enabled")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -pthread -Wall -Wextra -Wfatal-errors -pedantic -g -fPIC")
+    message("DEBUG_MODE is ON - no optimizations enabled")
+    add_definitions(-DDEBUG_MODE=1)
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -pthread -Wall -Wextra         -Wfatal-errors -pedantic -g -fPIC")
 else()
-    message("DEBUG is OFF - O2 optimizations enabled")
-    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -pthread -Wall -Wextra -Werror -Wfatal-errors -pedantic -fPIC")
+    message("DEBUG_MODE is OFF - O2 optimizations enabled")
+    add_definitions(-DDEBUG_MODE=0)
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -pthread -Wall -Wextra -Werror -Wfatal-errors -pedantic    -fPIC")
 endif()
 
 ## Find catkin macros and libraries (modify here & in packages.xml if you want to add some more)
