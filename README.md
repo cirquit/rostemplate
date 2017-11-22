@@ -110,7 +110,7 @@ If you want to create your own project, do this:
 > cd src
 > catkin_create_pkg [name] std_msg roscpp [other-dependencies]
 > cd ..
-> catkin_make --source [name]
+> catkin_make
 ```
 
 But you don't have any code yet to compile so there's no executable to run.
@@ -153,7 +153,7 @@ The `CMakeLists.txt` should be self-explanatory, as well as the nested ones in `
 **Compiling**
 
 ```bash
-catkin_ws> catkin_make --source [my-package-name]
+catkin_ws> catkin_make
 ```
 
 **Running** - open three terminals, navigate to `catkin_make/build/src` and run `publisher`, `forwarder` and `subscriber` in the terminals while `roscore` is running in the background.
