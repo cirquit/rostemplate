@@ -108,7 +108,7 @@ If you want to create your own project, do this:
 ```bash
 > cd catkin_ws
 > cd src
-> catkin_create_pkg [name] std_msg roscpp [other-dependencies]
+> catkin_create_pkg [name] std_msgs roscpp [other-dependencies]
 > cd ..
 > catkin_make
 ```
